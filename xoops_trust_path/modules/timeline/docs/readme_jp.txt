@@ -1,0 +1,46 @@
+$Id: readme_jp.txt,v 1.1 2009/03/19 14:41:41 ohwada Exp $
+
+=================================================
+Version: 0.10
+Date:    2009-03-15
+Author:  Kenichi OHWADA
+URL:     http://linux.ohwada.jp/
+Email:   webmaster@ohwada.jp
+=================================================
+
+MIT Timeline を使用してタイムラインをモジュールです。
+http://code.google.com/p/simile-widgets/wiki/Timeline
+
+● 主な機能
+1. 見本
+(1) 例１：XML 形式のデータを読込むシンプルな例
+(2) 例２：Event オブジェクトを設定するシンプルな例
+(3) 例３：JSON 形式のデータを読込む CompactEventPainter の例
+(3) 例４：Event オブジェクトを設定する CompactEventPainter の例
+
+2. API機能
+他のモジュールがタイムラインを表示するためのインタフェースを提供する
+
+
+● インストール
+1. 共通 ( xoops 2.0.16a JP および XOOPS Cube 2.1.x )
+解凍すると、html と xoops_trust_path の２つディレクトリがあります。
+それぞれ、XOOPS の該当するディレクトリに格納ください。
+
+イントール時に下記のような Warning が出ますが、
+動作には支障ないので、無視してください。
+-----
+Warning [Xoops]: Smarty error: unable to read resource: "db:_inc_simple_xml_js.html" in file class/smarty/Smarty.class.php line 1095
+-----
+
+2. xoops 2.0.18
+上記に加えて
+(1) preload ファイルをリネームする
+XOOPS_TRUST_PATH/modules/timeline/preload/_constants.php (アンダーバーあり)
+ -> constants.php (アンダーバーなし)
+
+(2) _C_TIMELINE_PRELOAD_XOOPS_2018 を有効にする
+先頭の // を削除する
+-----
+//define("_C_TIMELINE_PRELOAD_XOOPS_2018", 1 ) ;
+-----
