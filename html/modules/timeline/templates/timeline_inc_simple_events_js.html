@@ -1,0 +1,63 @@
+<{* $Id: timeline_inc_simple_events_js.html,v 1.1 2009/03/19 14:42:23 ohwada Exp $ *}>
+
+<script type="text/javascript">
+//<![CDATA[
+var timeline_event_array = new Array();
+
+<{* -- timeline event loop -- *}>
+<{counter name="timeline_event_i" assign="timeline_event_i" start=0 print=false }>
+<{foreach item=event from=$events}>
+	var event = {};
+	<{if $event.start != '' }>
+		event["start"] = new Date( Date.parse( "<{$event.start}>" ) );
+	<{/if}>
+	<{if $event.end != '' }>
+		event["end"] = new Date( Date.parse( "<{$event.end}>" ) );
+	<{/if}>
+	<{if $event.title != '' }>
+		event["text"] = "<{$event.title}>";
+	<{/if}>
+	<{if $event.description != '' }>
+		event["description"] = "<{$event.description}>";
+	<{/if}>
+	<{if $event.image != '' }>
+		event["image"] = "<{$event.image}>";
+	<{/if}>
+	<{if $event.link != '' }>
+		event["link"] = "<{$event.link}>";
+	<{/if}>
+	timeline_event_array[<{$timeline_event_i}>] = event;
+<{counter name="timeline_event_i" assign="timeline_event_i" print=false }>
+<{/foreach}>
+<{* -- timeline event end -- *}>
+
+function timeline_load_<{$id}>() 
+{
+	var timeline_param = {};
+	timeline_param["element"]       = "<{$element}>";
+	timeline_param["zoom"]          = "<{$zoom}>";
+	timeline_param["band_0_date"]   = "<{$band_0_date}>";
+	timeline_param["band_0_width"]  = "<{$band_0_width}>";
+	timeline_param["band_0_pixels"] = "<{$band_0_pixels}>";
+	timeline_param["band_1_date"]   = "<{$band_1_date}>";
+	timeline_param["band_1_width"]  = "<{$band_1_width}>";
+	timeline_param["band_1_pixels"] = "<{$band_1_pixels}>";
+	timeline_param["band_0_unit"]   = <{$band_0_unit}>;
+	timeline_param["band_1_unit"]   = <{$band_1_unit}>;
+
+	timeline_simple_events( timeline_param, timeline_event_array );
+}
+
+<{if $show_onload }>
+  window.onload = timeline_load_<{$id}>;
+<{/if}>
+<{if $show_onresize }>
+  window.onresize = timeline_resize;
+<{/if}>
+
+//]]>
+</script>
+
+<{if $show_element }>
+  <div id="<{$element}>" style="<{$style}>">Loading ...</div>
+<{/if}>
