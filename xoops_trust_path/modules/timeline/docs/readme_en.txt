@@ -1,4 +1,4 @@
-$Id: readme_en.txt,v 1.1 2009/03/19 14:41:41 ohwada Exp $
+$Id: readme_en.txt,v 1.2 2009/03/20 04:06:19 ohwada Exp $
 
 =================================================
 Version: 0.10
@@ -45,3 +45,9 @@ remove // at the head.
 -----
 //define("_C_TIMELINE_PRELOAD_XOOPS_2018", "1" )
 -----
+
+
+* Special Thanks *
+Special thanks to MIT Simile Project.
+- http://code.google.com/p/simile-widgets/wiki/Timeline
+
