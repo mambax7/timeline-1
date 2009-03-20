@@ -1,5 +1,5 @@
 <?php
-// $Id: timeline.php,v 1.1 2009/03/19 14:41:43 ohwada Exp $
+// $Id: timeline.php,v 1.2 2009/03/20 09:58:04 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -357,8 +357,6 @@ function set_element_name( $val )
 
 function set_center_date( $val )
 {
-// GMT 0900 -> GMT+0900
-	$val = preg_replace('/GMT\s+(\d+)/i','GMT+$1', $val);
 	$this->_center_date = $val ;
 }
 

@@ -1,4 +1,4 @@
-<{* $Id: main_index.html,v 1.1 2009/03/19 14:41:41 ohwada Exp $ *}>
+<{* $Id: main_index.html,v 1.2 2009/03/20 09:58:04 ohwada Exp $ *}>
 
 <{if $show_default_css }>
   <link href="<{$xoops_url}>/modules/<{$xoops_dirname}>/libs/default.css" type="text/css" rel="stylesheet"/>
@@ -12,7 +12,7 @@
 function timeline_zoom_<{$id}>( link, op, unit )
 {
 	var date  = timeline_get_center_date();
-	link.href = '<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=' + op + '&unit=' + unit + '&date=' + decodeURI(date) ;
+	link.href = '<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=' + op + '&unit=' + unit + '&date=' + encodeURIComponent(date) ;
 	return true;
 }
 //]]>
