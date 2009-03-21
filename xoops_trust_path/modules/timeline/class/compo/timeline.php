@@ -1,5 +1,5 @@
 <?php
-// $Id: timeline.php,v 1.2 2009/03/20 09:58:04 ohwada Exp $
+// $Id: timeline.php,v 1.3 2009/03/21 06:11:08 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -40,9 +40,9 @@ class timeline_compo_timeline
 	var $_param_painter_json ;
 	var $_param_painter_enevts ;
 
-	var $_info_max   = 100 ;
-	var $_info_width = 20 ;
-	var $_info_break = '<br />' ;
+	var $_desc_max   = 100 ;
+	var $_desc_width = 20 ;
+	var $_desc_break = '<br />' ;
 
 	var $_DIRNAME ;
 	var $_MODULE_URL ;
@@ -50,6 +50,9 @@ class timeline_compo_timeline
 
 	var $_STYLE  = 'border: 1px solid #aaa; ' ;
 	var $_HEIGHT = 150;
+
+// Sep 27 2009 09:00:00 +0900
+	var $_FMT_DATETIME = 'M j Y H:i:s O';
 
 //---------------------------------------------------------
 // constructor
@@ -289,13 +292,34 @@ function bool_to_str( $bool )
 function build_summary( $str )
 {
 	return $this->_multibyte_class->build_summary_with_wordwrap( 
-		$str, $this->_info_max, $this->_info_width, $this->_info_break );
+		$str, $this->_desc_max, $this->_desc_width, $this->_desc_break );
+}
+
+function escape_quotation( $str )
+{
+// " -> \"
+	return str_replace( '"', '\"', $str );
+}
+
+function unixtime_to_datetime( $time )
+{
+	if ( $time > 0 ) {
+		return date( $this->_FMT_DATETIME, $time );
+	}
+	return false;
 }
 
 function set_band_unit( $unit )
 {
 	switch ( $unit )
 	{
+		case 'decade':
+			$this->set_band_0_unit( _C_TIMELINE_UNIT_YEAR );
+			$this->set_band_1_unit( _C_TIMELINE_UNIT_DECADE );
+			$this->set_band_0_pixels( _C_TIMELINE_PIXELS_DECADE_YEAR );
+			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_DECADE_DECADE );
+			break;
+
 		case 'year':
 			$this->set_band_0_unit( _C_TIMELINE_UNIT_MONTH );
 			$this->set_band_1_unit( _C_TIMELINE_UNIT_YEAR );
