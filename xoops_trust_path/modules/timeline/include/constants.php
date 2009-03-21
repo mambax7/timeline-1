@@ -1,5 +1,5 @@
 <?php
-// $Id: constants.php,v 1.1 2009/03/19 14:41:41 ohwada Exp $
+// $Id: constants.php,v 1.2 2009/03/21 08:25:57 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -41,12 +41,14 @@ define("_C_TIMELINE_UNIT_DECADE",      8) ;
 define("_C_TIMELINE_UNIT_CENTURY",     9) ;
 define("_C_TIMELINE_UNIT_MILLENNIUM",  10) ;
 
-define("_C_TIMELINE_PIXELS_WEEK_DAY",    80) ;
-define("_C_TIMELINE_PIXELS_WEEK_MONTH", 100) ;
-define("_C_TIMELINE_PIXELS_MONTH_WEEK", 120) ;
-define("_C_TIMELINE_PIXELS_MONTH_MONTH", 50) ;
-define("_C_TIMELINE_PIXELS_YEAR_MONTH",  50) ;
-define("_C_TIMELINE_PIXELS_YEAR_YEAR",   60) ;
+define("_C_TIMELINE_PIXELS_WEEK_DAY",      80) ;
+define("_C_TIMELINE_PIXELS_WEEK_MONTH",   100) ;
+define("_C_TIMELINE_PIXELS_MONTH_WEEK",   120) ;
+define("_C_TIMELINE_PIXELS_MONTH_MONTH",   50) ;
+define("_C_TIMELINE_PIXELS_YEAR_MONTH",    50) ;
+define("_C_TIMELINE_PIXELS_YEAR_YEAR",     60) ;
+define("_C_TIMELINE_PIXELS_DECADE_YEAR",   60) ;
+define("_C_TIMELINE_PIXELS_DECADE_DECADE", 60) ;
 
 // sample
 define("_C_TIMELINE_SAMPLE_URL_SIMPLE_XML", "http://simile.mit.edu/wiki/How_to_Create_Timelines") ;
