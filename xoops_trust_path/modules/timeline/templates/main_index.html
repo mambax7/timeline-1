@@ -1,4 +1,4 @@
-<{* $Id: main_index.html,v 1.2 2009/03/20 09:58:04 ohwada Exp $ *}>
+<{* $Id: main_index.html,v 1.3 2009/03/21 15:53:55 ohwada Exp $ *}>
 
 <{if $show_default_css }>
   <link href="<{$xoops_url}>/modules/<{$xoops_dirname}>/libs/default.css" type="text/css" rel="stylesheet"/>
@@ -58,6 +58,8 @@ Timeline version: <span id="timeline_version"></span><br /><br />
   Timeline.writeVersion('timeline_version');
 //]]>
 </script>
+
+<{$lang_caution_ie}><br /><br />
 
 <noscript>
   <div class="timeline_error"><{$lang_js_invalid}></div>
