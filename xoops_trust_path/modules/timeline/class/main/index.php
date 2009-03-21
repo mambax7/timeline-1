@@ -1,5 +1,5 @@
 <?php
-// $Id: index.php,v 1.1 2009/03/19 14:41:41 ohwada Exp $
+// $Id: index.php,v 1.2 2009/03/21 16:16:12 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -139,6 +139,7 @@ function build_common( $id )
 		'lang_title_simple_events'  => $this->get_lang('TITLE_SIMPLE_EVENTS') ,
 		'lang_title_painter_json'   => $this->get_lang('TITLE_PAINTER_JSON') ,
 		'lang_title_painter_events' => $this->get_lang('TITLE_PAINTER_EVENTS') ,
+		'lang_caution_ie'           => $this->get_lang('CAUTION_IE') ,
 	);
 	return $arr;
 }
