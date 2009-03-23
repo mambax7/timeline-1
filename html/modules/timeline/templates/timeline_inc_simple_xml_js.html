@@ -1,21 +1,22 @@
-<{* $Id: timeline_inc_simple_xml_js.html,v 1.1 2009/03/19 14:42:23 ohwada Exp $ *}>
+<{* $Id: timeline_inc_simple_xml_js.html,v 1.2 2009/03/23 00:51:22 ohwada Exp $ *}>
 
 <script type="text/javascript">
 //<![CDATA[
 function timeline_load_<{$id}>() 
 {
 	var timeline_param = {};
-	timeline_param["xml"]           = "<{$xml}>";
-	timeline_param["element"]       = "<{$element}>";
-	timeline_param["zoom"]          = "<{$zoom}>";
-	timeline_param["band_0_date"]   = "<{$band_0_date}>";
-	timeline_param["band_0_width"]  = "<{$band_0_width}>";
-	timeline_param["band_0_pixels"] = "<{$band_0_pixels}>";
-	timeline_param["band_1_date"]   = "<{$band_1_date}>";
-	timeline_param["band_1_width"]  = "<{$band_1_width}>";
-	timeline_param["band_1_pixels"] = "<{$band_1_pixels}>";
-	timeline_param["band_0_unit"]   = <{$band_0_unit}>;
-	timeline_param["band_1_unit"]   = <{$band_1_unit}>;
+	timeline_param["xml"]              = "<{$xml}>";
+	timeline_param["element"]          = "<{$element}>";
+	timeline_param["band_0_date"]      = "<{$band_0_date}>";
+	timeline_param["band_0_width"]     = "<{$band_0_width}>";
+	timeline_param["band_0_pixels"]    = "<{$band_0_pixels}>";
+	timeline_param["band_1_date"]      = "<{$band_1_date}>";
+	timeline_param["band_1_width"]     = "<{$band_1_width}>";
+	timeline_param["band_1_pixels"]    = "<{$band_1_pixels}>";
+	timeline_param["band_0_unit"]      = <{$band_0_unit}>;
+	timeline_param["band_1_unit"]      = <{$band_1_unit}>;
+	timeline_param["band_1_syncwith"]  = <{$band_1_syncwith}>;
+	timeline_param["band_1_highlight"] = <{$band_1_highlight}>;
 
 	timeline_simple_xml( timeline_param );
 }

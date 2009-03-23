@@ -1,5 +1,5 @@
 /* ========================================================
- * $Id: timeline.js,v 1.1 2009/03/19 14:42:18 ohwada Exp $
+ * $Id: timeline.js,v 1.2 2009/03/23 00:52:45 ohwada Exp $
  * http://code.google.com/p/simile-widgets/wiki/Timeline
  * ========================================================
  */
@@ -9,14 +9,8 @@ var timeline_resize_timer_id = null;
 
 function timeline_simple_xml( param ) 
 {
-
 	var eventSource = new Timeline.DefaultEventSource();
-
-	if ( param["zoom"] ) {
-		var bandinfos   = timeline_init_bandinfos_zoom( eventSource, param );
-	} else {
-		var bandinfos   = timeline_init_bandinfos( eventSource, param );
-	}
+	var bandinfos   = timeline_init_bandinfos( eventSource, param );
 
 	timeline_obj = Timeline.create(document.getElementById(param["element"]), bandinfos);
 
@@ -27,12 +21,7 @@ function timeline_simple_xml( param )
 function timeline_simple_events( param, event_array ) 
 {
 	var eventSource = new Timeline.DefaultEventSource();
-
-	if ( param["zoom"] ) {
-		var bandinfos   = timeline_init_bandinfos_zoom( eventSource, param );
-	} else {
-		var bandinfos   = timeline_init_bandinfos( eventSource, param );
-	}
+	var bandinfos   = timeline_init_bandinfos( eventSource, param );
 
 	for( i=0 ; i< event_array.length ; i++ ){
 		var event = new Timeline.DefaultEventSource.Event( event_array[i] );
@@ -84,7 +73,7 @@ function timeline_init_bandinfos( eventSource, param )
 			date:           param["band_0_date"],
 			width:          param["band_0_width"], 
 			intervalPixels: param["band_0_pixels"],
-			intervalUnit:   Timeline.DateTime.MONTH ,
+			intervalUnit:   param["band_0_unit"]
 		}),
 
 		Timeline.createBandInfo({
@@ -92,46 +81,12 @@ function timeline_init_bandinfos( eventSource, param )
 			date:           param["band_1_date"],
 			width:          param["band_1_width"], 
 			intervalPixels: param["band_1_pixels"],
-			intervalUnit:   Timeline.DateTime.YEAR 
+			intervalUnit:   param["band_1_unit"] 
 		})
 	];
 
-	bandinfos[1].syncWith = 0;
-	bandinfos[1].highlight = true;
-	return bandinfos;
-}
-
-function timeline_init_bandinfos_zoom( eventSource, param ) 
-{
-	var pixels = param["band_0_pixels"];
-
-	var bandinfos = [
-		Timeline.createBandInfo({
-			eventSource:    eventSource,
-			date:           param["band_0_date"],
-			width:          param["band_0_width"], 
-			intervalPixels: pixels,
-			intervalUnit:   Timeline.DateTime.MONTH ,
-			zoomIndex:      3,
-			zoomSteps:      new Array(
-				{pixelsPerInterval: pixels, unit: Timeline.DateTime.HOUR},
-				{pixelsPerInterval: pixels, unit: Timeline.DateTime.DAY},
-				{pixelsPerInterval: pixels, unit: Timeline.DateTime.MONTH} // DEFAULT
-			)
-		}),
-
-		Timeline.createBandInfo({
-			eventSource:    eventSource,
-			date:           param["band_1_date"],
-			width:          param["band_1_width"], 
-			intervalPixels: param["band_1_pixels"],
-			intervalUnit:   Timeline.DateTime.YEAR ,
-			layout:         'original'  // original, overview, detailed
-		})
-	];
-
-	bandinfos[1].syncWith = 0;
-	bandinfos[1].highlight = true;
+	bandinfos[1].syncWith  = param["band_1_syncwith"];
+	bandinfos[1].highlight = param["band_1_highlight"];
 	return bandinfos;
 }
 
@@ -178,7 +133,7 @@ function timeline_init_bandinfos_painter( eventSource, param )
 			width:          param["band_1_width"], 
 			intervalPixels: param["band_1_pixels"],
 			intervalUnit:   param["band_1_unit"],
-			layout:         'overview'  // original, overview, detailed
+			layout:         param["band_1_layout"]
 		})
 	];
 
