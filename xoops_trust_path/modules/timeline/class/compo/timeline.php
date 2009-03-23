@@ -1,5 +1,5 @@
 <?php
-// $Id: timeline.php,v 1.3 2009/03/21 06:11:08 ohwada Exp $
+// $Id: timeline.php,v 1.4 2009/03/23 00:45:14 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -34,6 +34,9 @@ class timeline_compo_timeline
 	var $_band_1_width  ;
 	var $_band_1_pixels ;
 	var $_band_1_unit   ;
+	var $_band_1_syncwith  ;
+	var $_band_1_highlight ;
+	var $_band_1_layout ;
 
 	var $_param_simple_xml ;
 	var $_param_simple_events ;
@@ -69,47 +72,57 @@ function timeline_compo_timeline( $dirname )
 	$this->_utility_class   = new timeline_base_lib_utility();
 
 	$this->_param_simple_xml = array(
-		'band_0_date'    => _C_TIMELINE_SIMPLE_XML_BAND_DATE ,
-		'band_0_width'   => _C_TIMELINE_SIMPLE_XML_BAND_0_WIDTH ,
-		'band_0_pixels'  => _C_TIMELINE_SIMPLE_XML_BAND_0_PIXELS ,
-		'band_0_unit'    => _C_TIMELINE_SIMPLE_XML_BAND_0_UNIT ,
-		'band_1_date'    => _C_TIMELINE_SIMPLE_XML_BAND_DATE ,
-		'band_1_width'   => _C_TIMELINE_SIMPLE_XML_BAND_1_WIDTH ,
-		'band_1_pixels'  => _C_TIMELINE_SIMPLE_XML_BAND_1_PIXELS ,
-		'band_1_unit'    => _C_TIMELINE_SIMPLE_XML_BAND_1_UNIT ,
+		'band_0_date'      => _C_TIMELINE_SIMPLE_XML_BAND_DATE ,
+		'band_0_width'     => _C_TIMELINE_SIMPLE_XML_BAND_0_WIDTH ,
+		'band_0_pixels'    => _C_TIMELINE_SIMPLE_XML_BAND_0_PIXELS ,
+		'band_0_unit'      => _C_TIMELINE_SIMPLE_XML_BAND_0_UNIT ,
+		'band_1_date'      => _C_TIMELINE_SIMPLE_XML_BAND_DATE ,
+		'band_1_width'     => _C_TIMELINE_SIMPLE_XML_BAND_1_WIDTH ,
+		'band_1_pixels'    => _C_TIMELINE_SIMPLE_XML_BAND_1_PIXELS ,
+		'band_1_unit'      => _C_TIMELINE_SIMPLE_XML_BAND_1_UNIT ,
+		'band_1_syncwith'  => _C_TIMELINE_BAND_1_SYNCWITH ,
+		'band_1_highlight' => _C_TIMELINE_BAND_1_HIGHLIGHT ,
 	);
 
 	$this->_param_simple_events = array(
-		'band_0_date'    => _C_TIMELINE_SIMPLE_EVENTS_BAND_DATE ,
-		'band_0_width'   => _C_TIMELINE_SIMPLE_EVENTS_BAND_0_WIDTH ,
-		'band_0_pixels'  => _C_TIMELINE_SIMPLE_EVENTS_BAND_0_PIXELS ,
-		'band_0_unit'    => _C_TIMELINE_SIMPLE_EVENTS_BAND_0_UNIT ,
-		'band_1_date'    => _C_TIMELINE_SIMPLE_EVENTS_BAND_DATE ,
-		'band_1_width'   => _C_TIMELINE_SIMPLE_EVENTS_BAND_1_WIDTH ,
-		'band_1_pixels'  => _C_TIMELINE_SIMPLE_EVENTS_BAND_1_PIXELS ,
-		'band_1_unit'    => _C_TIMELINE_SIMPLE_EVENTS_BAND_1_UNIT ,
+		'band_0_date'      => _C_TIMELINE_SIMPLE_EVENTS_BAND_DATE ,
+		'band_0_width'     => _C_TIMELINE_SIMPLE_EVENTS_BAND_0_WIDTH ,
+		'band_0_pixels'    => _C_TIMELINE_SIMPLE_EVENTS_BAND_0_PIXELS ,
+		'band_0_unit'      => _C_TIMELINE_SIMPLE_EVENTS_BAND_0_UNIT ,
+		'band_1_date'      => _C_TIMELINE_SIMPLE_EVENTS_BAND_DATE ,
+		'band_1_width'     => _C_TIMELINE_SIMPLE_EVENTS_BAND_1_WIDTH ,
+		'band_1_pixels'    => _C_TIMELINE_SIMPLE_EVENTS_BAND_1_PIXELS ,
+		'band_1_unit'      => _C_TIMELINE_SIMPLE_EVENTS_BAND_1_UNIT ,
+		'band_1_syncwith'  => _C_TIMELINE_BAND_1_SYNCWITH ,
+		'band_1_highlight' => _C_TIMELINE_BAND_1_HIGHLIGHT ,
 	);
 
 	$this->_param_painter_json = array(
-		'band_0_date'    => _C_TIMELINE_PAINTER_JSON_BAND_DATE ,
-		'band_0_width'   => _C_TIMELINE_PAINTER_JSON_BAND_0_WIDTH ,
-		'band_0_pixels'  => _C_TIMELINE_PAINTER_JSON_BAND_0_PIXELS ,
-		'band_0_unit'    => _C_TIMELINE_PAINTER_JSON_BAND_0_UNIT ,
-		'band_1_date'    => _C_TIMELINE_PAINTER_JSON_BAND_DATE ,
-		'band_1_width'   => _C_TIMELINE_PAINTER_JSON_BAND_1_WIDTH ,
-		'band_1_pixels'  => _C_TIMELINE_PAINTER_JSON_BAND_1_PIXELS ,
-		'band_1_unit'    => _C_TIMELINE_PAINTER_JSON_BAND_1_UNIT ,
+		'band_0_date'      => _C_TIMELINE_PAINTER_JSON_BAND_DATE ,
+		'band_0_width'     => _C_TIMELINE_PAINTER_JSON_BAND_0_WIDTH ,
+		'band_0_pixels'    => _C_TIMELINE_PAINTER_JSON_BAND_0_PIXELS ,
+		'band_0_unit'      => _C_TIMELINE_PAINTER_JSON_BAND_0_UNIT ,
+		'band_1_date'      => _C_TIMELINE_PAINTER_JSON_BAND_DATE ,
+		'band_1_width'     => _C_TIMELINE_PAINTER_JSON_BAND_1_WIDTH ,
+		'band_1_pixels'    => _C_TIMELINE_PAINTER_JSON_BAND_1_PIXELS ,
+		'band_1_unit'      => _C_TIMELINE_PAINTER_JSON_BAND_1_UNIT ,
+		'band_1_layout'    => _C_TIMELINE_PAINTER_JSON_BAND_1_LAYOUT ,
+		'band_1_syncwith'  => _C_TIMELINE_BAND_1_SYNCWITH ,
+		'band_1_highlight' => _C_TIMELINE_BAND_1_HIGHLIGHT ,
 	);
 
 	$this->_param_painter_events = array(
-		'band_0_date'    => _C_TIMELINE_PAINTER_EVENTS_BAND_DATE ,
-		'band_0_width'   => _C_TIMELINE_PAINTER_EVENTS_BAND_0_WIDTH ,
-		'band_0_pixels'  => _C_TIMELINE_PAINTER_EVENTS_BAND_0_PIXELS ,
-		'band_0_unit'    => _C_TIMELINE_PAINTER_EVENTS_BAND_0_UNIT ,
-		'band_1_date'    => _C_TIMELINE_PAINTER_EVENTS_BAND_DATE ,
-		'band_1_width'   => _C_TIMELINE_PAINTER_EVENTS_BAND_1_WIDTH ,
-		'band_1_pixels'  => _C_TIMELINE_PAINTER_EVENTS_BAND_1_PIXELS ,
-		'band_1_unit'    => _C_TIMELINE_PAINTER_EVENTS_BAND_1_UNIT ,
+		'band_0_date'      => _C_TIMELINE_PAINTER_EVENTS_BAND_DATE ,
+		'band_0_width'     => _C_TIMELINE_PAINTER_EVENTS_BAND_0_WIDTH ,
+		'band_0_pixels'    => _C_TIMELINE_PAINTER_EVENTS_BAND_0_PIXELS ,
+		'band_0_unit'      => _C_TIMELINE_PAINTER_EVENTS_BAND_0_UNIT ,
+		'band_1_date'      => _C_TIMELINE_PAINTER_EVENTS_BAND_DATE ,
+		'band_1_width'     => _C_TIMELINE_PAINTER_EVENTS_BAND_1_WIDTH ,
+		'band_1_pixels'    => _C_TIMELINE_PAINTER_EVENTS_BAND_1_PIXELS ,
+		'band_1_unit'      => _C_TIMELINE_PAINTER_EVENTS_BAND_1_UNIT ,
+		'band_1_layout'    => _C_TIMELINE_PAINTER_EVENTS_BAND_1_LAYOUT ,
+		'band_1_syncwith'  => _C_TIMELINE_BAND_1_SYNCWITH ,
+		'band_1_highlight' => _C_TIMELINE_BAND_1_HIGHLIGHT ,
 	);
 
 	$this->_icon_alone  = $this->_IMAGES_URL."/no-image-40.png" ; 
@@ -131,22 +144,22 @@ function &getSingleton( $dirname )
 //---------------------------------------------------------
 function init_simple_xml()
 {
-	$this->set_param( $this->_param_simple_xml );
+	$this->set_params( $this->_param_simple_xml );
 }
 
 function init_simple_events()
 {
-	$this->set_param( $this->_param_simple_events );
+	$this->set_params( $this->_param_simple_events );
 }
 
 function init_painter_json()
 {
-	$this->set_param( $this->_param_painter_json );
+	$this->set_params( $this->_param_painter_json );
 }
 
 function init_painter_events()
 {
-	$this->set_param( $this->_param_painter_events );
+	$this->set_params( $this->_param_painter_events );
 }
 
 function fetch_simple_xml( $param )
@@ -210,33 +223,27 @@ function build_painter_events( $id, $events, $flag_header=true )
 	return $arr;
 }
 
-function set_param( $param )
+function set_params( $param )
 {
-	if ( $param['band_0_date'] ) {
-		 $this->_band_0_date = $param['band_0_date'] ;
-	}
-	if ( $param['band_0_width'] ) {
-		 $this->_band_0_width = $param['band_0_width'] ;
-	}
-	if ( $param['band_0_pixels'] ) {
-		 $this->_band_0_pixels = $param['band_0_pixels'] ;
-	}
-	if ( $param['band_0_unit'] ) {
-		 $this->_band_0_unit = $param['band_0_unit'] ;
-	}
-	if ( $param['band_1_date'] ) {
-		 $this->_band_1_date = $param['band_1_date'] ;
-	}
-	if ( $param['band_1_width'] ) {
-		 $this->_band_1_width = $param['band_1_width'] ;
-	}
-	if ( $param['band_1_pixels'] ) {
-		 $this->_band_1_pixels = $param['band_1_pixels'] ;
-	}
-	if ( $param['band_1_unit'] ) {
-		 $this->_band_1_unit = $param['band_1_unit'] ;
-	}
+	$this->set_param_single( $param, 'band_0_date' );
+	$this->set_param_single( $param, 'band_0_width' );
+	$this->set_param_single( $param, 'band_0_pixels' );
+	$this->set_param_single( $param, 'band_0_unit' );
+	$this->set_param_single( $param, 'band_1_date' );
+	$this->set_param_single( $param, 'band_1_width' );
+	$this->set_param_single( $param, 'band_1_pixels' );
+	$this->set_param_single( $param, 'band_1_unit' );
+	$this->set_param_single( $param, 'band_1_syncwith' );
+	$this->set_param_single( $param, 'band_1_highlight' );
+	$this->set_param_single( $param, 'band_1_layout' );
+}
 
+function set_param_single( $param, $name )
+{
+	$var = '_'.$name;
+	if ( isset($param[ $name ]) && ($param[ $name ] != '') ) {
+		 $this->$var = $param[ $name ] ;
+	}
 }
 
 function build_common( $id, $flag_header=true )
@@ -271,6 +278,9 @@ function build_common( $id, $flag_header=true )
 		'band_1_width'      => $this->_band_1_width,
 		'band_1_pixels'     => $this->_band_1_pixels,
 		'band_1_unit'       => $this->_band_1_unit,
+		'band_1_syncwith'   => $this->_band_1_syncwith ,
+		'band_1_highlight'  => $this->_band_1_highlight ,
+		'band_1_layout'     => $this->_band_1_layout,
 	);
 	return $arr;
 }
