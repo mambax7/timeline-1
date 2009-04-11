@@ -1,11 +1,22 @@
-$Id: readme_en.txt,v 1.2 2009/03/20 04:06:19 ohwada Exp $
+$Id: readme_en.txt,v 1.3 2009/04/11 14:54:42 ohwada Exp $
+
+=================================================
+Version: 0.11
+Date:   2009-04-10
+Author: Kenichi OHWADA
+URL:    http://linux2.ohwada.net/
+Email:  webmaster@ohwada.net
+=================================================
+
+This module is the timeline using MIT Timeline
+
+* Changes *
+(1) add onload in template
+
 
 =================================================
 Version: 0.10
 Date:   2009-03-15
-Author: Kenichi OHWADA
-URL:    http://linux2.ohwada.net/
-Email:  webmaster@ohwada.net
 =================================================
 
 This module is the timeline using MIT Timeline

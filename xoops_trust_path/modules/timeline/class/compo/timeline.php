@@ -1,10 +1,16 @@
 <?php
-// $Id: timeline.php,v 1.4 2009/03/23 00:45:14 ohwada Exp $
+// $Id: timeline.php,v 1.5 2009/04/11 14:54:42 ohwada Exp $
 
 //=========================================================
 // timeline module
 // 2009-03-15 K.OHWADA
 //=========================================================
+
+//---------------------------------------------------------
+// change log
+// 2009-04-10 K.OHWADA
+// set_show_onload()
+//---------------------------------------------------------
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
@@ -18,10 +24,16 @@ class timeline_compo_timeline
 	var $_multibyte_class ;
 	var $_utility_class ;
 
+// set param
 	var $_element_name  = 'timeline_view' ;
 	var $_show_element  = false;
 	var $_show_onload   = false;
 	var $_show_onresize = false;
+	var $_show_timeout  = false;
+	var $_timeout = 1000;	// 1 sec
+	var $_style   = 'border: 1px solid #808080; ' ;
+	var $_width   = '100%';
+	var $_height  = '150px';
 
 	var $_center_date = '';
 	var $_icon_alone  ;
@@ -50,9 +62,6 @@ class timeline_compo_timeline
 	var $_DIRNAME ;
 	var $_MODULE_URL ;
 	var $_MARKER_URL ;
-
-	var $_STYLE  = 'border: 1px solid #aaa; ' ;
-	var $_HEIGHT = 150;
 
 // Sep 27 2009 09:00:00 +0900
 	var $_FMT_DATETIME = 'M j Y H:i:s O';
@@ -248,7 +257,7 @@ function set_param_single( $param, $name )
 
 function build_common( $id, $flag_header=true )
 {
-	$style = $this->_STYLE.' height:'.$this->_HEIGHT.'px; ';
+	$style = $this->_style.' width:'.$this->_width.'; height:'.$this->_height.'; ';
 	$show  = false ;
 
 	if ( $flag_header ) {
@@ -266,6 +275,8 @@ function build_common( $id, $flag_header=true )
 		'show_element'      => $this->_show_element ,
 		'show_onload'       => $this->_show_onload ,
 		'show_onresize'     => $this->_show_onresize ,
+		'show_timeout'      => $this->_show_timeout ,
+		'timeout'           => $this->_timeout ,
 		'style'             => $style ,
 		'center_date'       => $this->_center_date,
 		'icon_alone'        => $this->_icon_alone,
@@ -377,6 +388,31 @@ function set_show_onload( $val )
 function set_show_onresize( $val )
 {
 	$this->_show_onresize = (bool)$val ;
+}
+
+function set_show_timeout( $val )
+{
+	$this->_show_timeout = (bool)$val ;
+}
+
+function set_timeout( $val )
+{
+	$this->_timeout = intval($val) ;
+}
+
+function set_height( $val )
+{
+	$this->_height = $val ;
+}
+
+function set_width( $val )
+{
+	$this->_width = $val ;
+}
+
+function set_style( $val )
+{
+	$this->_style = $val;
 }
 
 function set_element( $val )

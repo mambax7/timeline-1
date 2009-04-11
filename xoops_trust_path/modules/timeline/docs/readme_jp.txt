@@ -1,14 +1,25 @@
-$Id: readme_jp.txt,v 1.2 2009/03/20 04:06:19 ohwada Exp $
+$Id: readme_jp.txt,v 1.3 2009/04/11 14:54:42 ohwada Exp $
 
 =================================================
-Version: 0.10
-Date:    2009-03-15
+Version: 0.11
+Date:    2009-04-10
 Author:  Kenichi OHWADA
 URL:     http://linux.ohwada.jp/
 Email:   webmaster@ohwada.jp
 =================================================
 
-MIT Timeline を使用してタイムラインをモジュールです。
+MIT Timeline を使用してタイムラインを表示するモジュールです。
+
+変更内容
+(1) テンプレートに onload を追加した
+
+
+=================================================
+Version: 0.10
+Date:    2009-03-15
+=================================================
+
+MIT Timeline を使用してタイムラインを表示するモジュールです。
 http://code.google.com/p/simile-widgets/wiki/Timeline
 
 ● 主な機能
