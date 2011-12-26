@@ -1,11 +1,28 @@
-$Id: readme_en.txt,v 1.3 2009/04/11 14:54:42 ohwada Exp $
+$Id: readme_en.txt,v 1.4 2011/12/26 05:45:39 ohwada Exp $
+
+=================================================
+Version: 0.20
+Date:   2011-12-25
+Author: Kenichi OHWADA
+URL:    http://linux2.ohwada.net/
+Email:  webmaster@ohwada.net
+=================================================
+
+This module is the timeline using MIT Timeline
+
+* Changes *
+1. Migrating to PHP 5.3
+Deprecated features in PHP 5.3.x
+http://www.php.net/manual/en/migration53.deprecated.php
+(1) Assigning the return value of new by reference is now deprecated.
+
+2. add Monet's life
+3. supoort before 1970 (unixtime)
+
 
 =================================================
 Version: 0.11
 Date:   2009-04-10
-Author: Kenichi OHWADA
-URL:    http://linux2.ohwada.net/
-Email:  webmaster@ohwada.net
 =================================================
 
 This module is the timeline using MIT Timeline

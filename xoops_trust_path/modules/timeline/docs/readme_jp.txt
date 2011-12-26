@@ -1,11 +1,28 @@
-$Id: readme_jp.txt,v 1.3 2009/04/11 14:54:42 ohwada Exp $
+$Id: readme_jp.txt,v 1.4 2011/12/26 05:45:39 ohwada Exp $
+
+=================================================
+Version: 0.20
+Date:    2011-12-25
+Author:  Kenichi OHWADA
+URL:     http://linux.ohwada.jp/
+Email:   webmaster@ohwada.jp
+=================================================
+
+MIT Timeline を使用してタイムラインを表示するモジュールです。
+
+変更内容
+1. PHP 5.3 対応
+PHP 5.3.x で推奨されない機能 を修正した
+http://www.php.net/manual/ja/migration53.deprecated.php
+(1) new の返り値を参照で代入すること
+
+2. モネの生涯を追加した
+3. 1970年 (unixtime) 以前に対応した
+
 
 =================================================
 Version: 0.11
 Date:    2009-04-10
-Author:  Kenichi OHWADA
-URL:     http://linux.ohwada.jp/
-Email:   webmaster@ohwada.jp
 =================================================
 
 MIT Timeline を使用してタイムラインを表示するモジュールです。

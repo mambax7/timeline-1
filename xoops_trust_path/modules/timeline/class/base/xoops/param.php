@@ -1,10 +1,16 @@
 <?php
-// $Id: param.php,v 1.1 2009/03/19 14:41:42 ohwada Exp $
+// $Id: param.php,v 1.2 2011/12/26 05:45:39 ohwada Exp $
 
 //=========================================================
 // timeline module
 // 2009-03-15 K.OHWADA
 //=========================================================
+
+//---------------------------------------------------------
+// change log
+// 2011-12-25 K.OHWADA
+// get_user_timeoffset()
+//---------------------------------------------------------
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
@@ -176,14 +182,26 @@ function user_to_server_time( $time, $default=0 )
 		return $default ;
 	}
 
-	global $xoopsConfig, $xoopsUser;
+	$timeoffset = $this->get_user_timeoffset() - $this->get_default_timezone();
+	$timestamp  = $time - ($timeoffset * 3600);
+	return $timestamp;
+}
+
+function get_user_timeoffset()
+{
+	global $xoopsUser;
 	if ($xoopsUser) {
 		$timeoffset = $xoopsUser->getVar("timezone_offset");
 	} else {
-		$timeoffset = $xoopsConfig['default_TZ'];
+		$timeoffset = $this->get_default_timezone();
 	}
-	$timestamp = $time - (($timeoffset - $xoopsConfig['server_TZ']) * 3600);
-	return $timestamp;
+	return $timeoffset;
+}
+
+function get_default_timezone()
+{
+	global $xoopsConfig;
+	return $xoopsConfig['default_TZ'];
 }
 
 //---------------------------------------------------------

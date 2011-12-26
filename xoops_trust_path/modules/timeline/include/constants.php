@@ -1,5 +1,5 @@
 <?php
-// $Id: constants.php,v 1.3 2009/03/23 00:45:14 ohwada Exp $
+// $Id: constants.php,v 1.4 2011/12/26 05:45:39 ohwada Exp $
 
 //=========================================================
 // webphoto module
@@ -51,8 +51,9 @@ define("_C_TIMELINE_PIXELS_DECADE_YEAR",   60) ;
 define("_C_TIMELINE_PIXELS_DECADE_DECADE", 60) ;
 
 // sample
-define("_C_TIMELINE_SAMPLE_URL_SIMPLE_XML", "http://simile.mit.edu/wiki/How_to_Create_Timelines") ;
-define("_C_TIMELINE_SAMPLE_URL_PAINTER_JSON", "http://simile-widgets.googlecode.com/svn/timeline/tags/latest/src/webapp/examples/compact-painter/compact-painter.html") ;
+define("_C_TIMELINE_SAMPLE_URL_SIMPLE_XML", "http://code.google.com/p/simile-widgets/wiki/Timeline_GettingStarted") ;
+define("_C_TIMELINE_SAMPLE_URL_PAINTER_JSON", "http://www.simile-widgets.org/timeline/examples/compact-painter/compact-painter.html") ;
+define("_C_TIMELINE_SAMPLE_URL_MONET_XML", "http://www.simile-widgets.org/timeline/examples/monet/monet.html") ;
 
 define("_C_TIMELINE_BAND_1_SYNCWITH", "0" ) ;
 define("_C_TIMELINE_BAND_1_HIGHLIGHT", "true" ) ;
@@ -90,6 +91,14 @@ define("_C_TIMELINE_PAINTER_EVENTS_BAND_1_PIXELS", _C_TIMELINE_PIXELS_MONTH_MONT
 define("_C_TIMELINE_PAINTER_EVENTS_BAND_0_UNIT", _C_TIMELINE_UNIT_WEEK ) ;
 define("_C_TIMELINE_PAINTER_EVENTS_BAND_1_UNIT", _C_TIMELINE_UNIT_MONTH ) ;
 define("_C_TIMELINE_PAINTER_EVENTS_BAND_1_LAYOUT", "overview" ) ;
+
+define("_C_TIMELINE_MONET_XML_BAND_YEAR",     "1850") ;
+define("_C_TIMELINE_MONET_XML_BAND_0_PIXELS", "200" ) ;
+define("_C_TIMELINE_MONET_XML_BAND_1_PIXELS", "200" ) ;
+
+define("_C_TIMELINE_MONET_EVENTS_BAND_YEAR",     "1850") ;
+define("_C_TIMELINE_MONET_EVENTS_BAND_0_PIXELS", "200" ) ;
+define("_C_TIMELINE_MONET_EVENTS_BAND_1_PIXELS", "200" ) ;
 
 // === define end ===
 }

@@ -1,5 +1,5 @@
 <?php
-// $Id: timeline.php,v 1.5 2009/04/11 14:54:42 ohwada Exp $
+// $Id: timeline.php,v 1.6 2011/12/26 05:45:39 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -8,6 +8,8 @@
 
 //---------------------------------------------------------
 // change log
+// 2011-12-25 K.OHWADA
+// init_monet_xml()
 // 2009-04-10 K.OHWADA
 // set_show_onload()
 //---------------------------------------------------------
@@ -23,6 +25,7 @@ class timeline_compo_timeline
 	var $_language_class ;
 	var $_multibyte_class ;
 	var $_utility_class ;
+	var $_xoops_param_class ;
 
 // set param
 	var $_element_name  = 'timeline_view' ;
@@ -54,6 +57,10 @@ class timeline_compo_timeline
 	var $_param_simple_events ;
 	var $_param_painter_json ;
 	var $_param_painter_enevts ;
+	var $_param_monet_xml ;
+	var $_param_monet_events ;
+
+	var $_timezone;
 
 	var $_desc_max   = 100 ;
 	var $_desc_width = 20 ;
@@ -79,6 +86,7 @@ function timeline_compo_timeline( $dirname )
 	$this->_language_class  =& timeline_compo_d3_language::getSingleton(   $dirname );
 	$this->_multibyte_class = new timeline_base_lib_multibyte();
 	$this->_utility_class   = new timeline_base_lib_utility();
+	$this->_xoops_param_class = new timeline_base_xoops_param();
 
 	$this->_param_simple_xml = array(
 		'band_0_date'      => _C_TIMELINE_SIMPLE_XML_BAND_DATE ,
@@ -134,9 +142,22 @@ function timeline_compo_timeline( $dirname )
 		'band_1_highlight' => _C_TIMELINE_BAND_1_HIGHLIGHT ,
 	);
 
+	$this->_param_monet_xml = array(
+		'band_year'     => _C_TIMELINE_MONET_XML_BAND_YEAR ,
+		'band_0_pixels' => _C_TIMELINE_MONET_XML_BAND_0_PIXELS ,
+		'band_1_pixels' => _C_TIMELINE_MONET_XML_BAND_1_PIXELS ,
+	);
+
+	$this->_param_monet_events = array(
+		'band_year'     => _C_TIMELINE_MONET_EVENTS_BAND_YEAR ,
+		'band_0_pixels' => _C_TIMELINE_MONET_EVENTS_BAND_0_PIXELS ,
+		'band_1_pixels' => _C_TIMELINE_MONET_EVENTS_BAND_1_PIXELS ,
+	);
+
 	$this->_icon_alone  = $this->_IMAGES_URL."/no-image-40.png" ; 
 	$this->_band_0_icon = $this->_IMAGES_URL."/no-image-80.png" ; 
 
+	$this->_timezone = intval( $this->_xoops_param_class->get_default_timezone() );
 }
 
 function &getSingleton( $dirname )
@@ -171,6 +192,16 @@ function init_painter_events()
 	$this->set_params( $this->_param_painter_events );
 }
 
+function init_monet_xml()
+{
+	$this->set_params( $this->_param_monet_xml );
+}
+
+function init_monet_events()
+{
+	$this->set_params( $this->_param_monet_events );
+}
+
 function fetch_simple_xml( $param )
 {
 	$template = 'db:'. $this->_DIRNAME .'_inc_simple_xml_js.html' ;
@@ -195,10 +226,22 @@ function fetch_painter_events( $param )
 	return $this->fetch_common( $param, $template );
 }
 
-function fetch_common( $param, $template )
+function fetch_monet_xml( $param )
+{
+	$template = 'db:'. $this->_DIRNAME .'_inc_monet_xml_js.html' ;
+	return $this->fetch_common( $param, $template );
+}
+
+function fetch_monet_events( $param )
+{
+	$template = 'db:'. $this->_DIRNAME .'_inc_monet_events_js.html' ;
+	return $this->fetch_common( $param, $template );
+}
+
+function fetch_common( $params, $template )
 {
 	$tpl = new XoopsTpl();
-	$tpl->assign( $param );
+	$tpl->assign( $params );
 	return $tpl->fetch( $template );
 }
 
@@ -212,8 +255,8 @@ function build_simple_xml( $id, $xml, $flag_header=true )
 function build_simple_events( $id, $events, $flag_header=true )
 {
 	$arr = $this->build_common( $id, $flag_header );
-	$arr['events'] = $events ;
-	$arr['zoom'] = "true" ;
+	$arr['events'] = $this->build_events( $events ) ;
+	$arr['zoom']   = "true" ;
 	return $arr;
 }
 
@@ -226,9 +269,25 @@ function build_painter_json( $id, $json, $flag_header=true )
 
 function build_painter_events( $id, $events, $flag_header=true )
 {
-
 	$arr = $this->build_common( $id, $flag_header );
-	$arr['events'] = $events ;
+	$arr['events'] = $this->build_events( $events ) ;
+	return $arr;
+}
+
+function build_monet_xml( $id, $xml, $flag_header=true )
+{
+	$arr = $this->build_common( $id, $flag_header );
+	$arr['band_year'] = $this->_param_monet_xml['band_year'];
+	$arr['xml'] = $xml ;
+	return $arr;
+}
+
+function build_monet_events( $id, $events, $flag_header=true )
+{
+	$arr = $this->build_common( $id, $flag_header );
+	$arr['band_year'] = $this->_param_monet_events['band_year'];
+	$arr['events']    = $this->build_events( $events ) ;
+	$arr['zoom']      = "true" ;
 	return $arr;
 }
 
@@ -362,6 +421,81 @@ function set_band_unit( $unit )
 			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_WEEK_MONTH );
 			break;	
 	}
+}
+
+//---------------------------------------------------------
+// events
+//---------------------------------------------------------
+function build_events( $events )
+{
+	$arr = array();
+	foreach( $events as $event )
+	{
+		$temp = $event;
+		$temp = $this->supplement_dates( $temp );
+		$temp = $this->remove_linecode( $temp );
+		$arr[] = $temp;
+	}
+	return $arr;
+}
+
+function supplement_dates( $event )
+{
+	$event = $this->supplement_date_common( $event, 'start' );
+	$event = $this->supplement_date_common( $event, 'end' );
+	$event = $this->supplement_date_common( $event, 'latest_start' );
+	$event = $this->supplement_date_common( $event, 'earliest_end' );
+	return $event;
+}
+
+function supplement_date_common( $event, $prefix )
+{
+	$year    = $prefix .'_year';
+	$month   = $prefix .'_month';
+	$month_1 = $prefix .'_month_1';
+	$day     = $prefix .'_day';
+	$hour    = $prefix .'_hour';
+	$minute  = $prefix .'_minute';
+	$second  = $prefix .'_second';
+	$tz      = $prefix .'_tz';
+
+	if ( isset( $event[ $year ] ) ) {
+		// month: Jan = 0
+		if ( isset( $event[ $month ] ) ) {
+			$event[ $month_1 ] = $event[ $month ] - 1;
+		} else {
+			$event[ $month ] = 1;
+			$event[ $month_1 ] = 0;
+		}
+		if ( !isset( $event[ $day ] ) ) {
+			$event[ $day ] = 1;
+		}
+		if ( !isset( $event[ $hour ] ) ) {
+			if ( isset( $event[ $tz ] ) && ( $event[ $tz ] == 'GMT' ) ) {
+				// set UTC
+				$event[ $hour ] = $this->_timezone;
+			} else {
+				$event[ $hour ] = 0;
+			}
+		}
+		if ( !isset( $event[ $minute ] ) ) {
+			$event[ $minute ] = 0;
+		}
+		if ( !isset( $event[ $second ] ) ) {
+			$event[ $second ] = 0;
+		}
+	}
+	return $event;
+}
+
+function remove_linecode( $params )
+{
+	$search = array("\r\n", "\n", "\r");
+	$arr = array();
+	foreach( $params as $k => $v ){
+		$arr[ $k ] = str_replace( $search, '', $v );
+	}
+	return $arr;
 }
 
 //---------------------------------------------------------

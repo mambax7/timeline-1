@@ -1,10 +1,16 @@
 <?php
-// $Id: index.php,v 1.2 2009/03/21 16:16:12 ohwada Exp $
+// $Id: index.php,v 1.3 2011/12/26 05:45:39 ohwada Exp $
 
 //=========================================================
 // timeline module
 // 2009-03-15 K.OHWADA
 //=========================================================
+
+//---------------------------------------------------------
+// change log
+// 2011-12-25 K.OHWADA
+// monet_xml
+//---------------------------------------------------------
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
@@ -97,6 +103,25 @@ function main()
 			$show_unit  = true ;
 			break;
 
+		case 'monet_xml':
+			$xml   = $this->_MODULE_URL.'/sample/monet.xml' ;
+			$this->_timeline_class->init_monet_xml();
+			$param = $this->_timeline_class->build_monet_xml( $ID, $xml );
+			$js    = $this->_timeline_class->fetch_monet_xml( $param );
+			$title = $this->get_lang('TITLE_MONET_XML');
+			$class = 'timeline_view';
+			$sample_url = _C_TIMELINE_SAMPLE_URL_MONET_XML;
+			break;
+
+		case 'monet_events':
+			timeline_include_once( 'sample/monet.php' );
+			$this->_timeline_class->init_monet_events();
+			$param = $this->_timeline_class->build_monet_events( $ID, timelime_sample_monet() );
+			$js    = $this->_timeline_class->fetch_monet_events( $param );
+			$title = $this->get_lang('TITLE_MONET_EVENTS');
+			$class = 'timeline_view';
+			break;
+
 		case 'simple_xml':
 		default:
 			$xml   = $this->_MODULE_URL.'/sample/simple.xml' ;
@@ -139,8 +164,11 @@ function build_common( $id )
 		'lang_title_simple_events'  => $this->get_lang('TITLE_SIMPLE_EVENTS') ,
 		'lang_title_painter_json'   => $this->get_lang('TITLE_PAINTER_JSON') ,
 		'lang_title_painter_events' => $this->get_lang('TITLE_PAINTER_EVENTS') ,
+		'lang_title_monet_xml'      => $this->get_lang('TITLE_MONET_XML') ,
+		'lang_title_monet_events'   => $this->get_lang('TITLE_MONET_EVENTS') ,
 		'lang_caution_ie'           => $this->get_lang('CAUTION_IE') ,
 	);
+
 	return $arr;
 }
 
