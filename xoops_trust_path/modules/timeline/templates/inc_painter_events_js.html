@@ -1,4 +1,4 @@
-<{* $Id: inc_painter_events_js.html,v 1.5 2011/12/26 05:45:39 ohwada Exp $ *}>
+<{* $Id: inc_painter_events_js.html,v 1.6 2011/12/26 23:45:51 ohwada Exp $ *}>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -9,14 +9,18 @@ var timeline_event_array = new Array();
 <{foreach item=event from=$events}>
 	var event = {};
 	<{if $event.start_unix > 0 }>
-		event["start"] = new Date( $event.start_unix );
+		var start = new Date();
+		start.setTime( Math.floor( <{$event.start_unix}> ) * 1000 );
+		event["start"] = start;
 	<{elseif $event.start_year != '' }>
 		event["start"] = new Date("<{$event.start_year}>", "<{$event.start_month_1}>", "<{$event.start_day}>", "<{$event.start_hour}>", "<{$event.start_minute}>", "<{$event.start_second}>" );
 	<{elseif $event.start != '' }>
 		event["start"] = new Date( Date.parse( "<{$event.start}>" ) );
 	<{/if}>
 	<{if $event.end_unix > 0 }>
-		event["end"] = new Date( $event.end_unix );
+		var end = new Date();
+		end.setTime( Math.floor( <{$event.end_unix}> ) * 1000 );
+		event["end"] = end;
 	<{elseif $event.end_year != '' }>
 		event["end"] = new Date("<{$event.end_year}>", "<{$event.end_month_1}>", "<{$event.end_day}>", "<{$event.end_hour}>", "<{$event.end_minute}>", "<{$event.end_second}>" );
 	<{elseif $event.end != '' }>
