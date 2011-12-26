@@ -1,4 +1,4 @@
-<{* $Id: timeline_inc_painter_events_js.html,v 1.4 2009/04/11 14:50:18 ohwada Exp $ *}>
+<{* $Id: timeline_inc_painter_events_js.html,v 1.5 2011/12/26 05:47:21 ohwada Exp $ *}>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -8,10 +8,18 @@ var timeline_event_array = new Array();
 <{counter name="timeline_event_i" assign="timeline_event_i" start=0 print=false }>
 <{foreach item=event from=$events}>
 	var event = {};
-	<{if $event.start != '' }>
+	<{if $event.start_unix > 0 }>
+		event["start"] = new Date( $event.start_unix );
+	<{elseif $event.start_year != '' }>
+		event["start"] = new Date("<{$event.start_year}>", "<{$event.start_month_1}>", "<{$event.start_day}>", "<{$event.start_hour}>", "<{$event.start_minute}>", "<{$event.start_second}>" );
+	<{elseif $event.start != '' }>
 		event["start"] = new Date( Date.parse( "<{$event.start}>" ) );
 	<{/if}>
-	<{if $event.end != '' }>
+	<{if $event.end_unix > 0 }>
+		event["end"] = new Date( $event.end_unix );
+	<{elseif $event.end_year != '' }>
+		event["end"] = new Date("<{$event.end_year}>", "<{$event.end_month_1}>", "<{$event.end_day}>", "<{$event.end_hour}>", "<{$event.end_minute}>", "<{$event.end_second}>" );
+	<{elseif $event.end != '' }>
 		event["end"] = new Date( Date.parse( "<{$event.end}>" ) );
 	<{/if}>
 	<{if $event.title != '' }>
@@ -61,6 +69,8 @@ function timeline_load_<{$id}>()
 	<{/if}>
 
 	timeline_painter_events( timeline_param, timeline_event_array );
+
+	Timeline.writeVersion('timeline_version');
 }
 
 <{if $show_onload }>

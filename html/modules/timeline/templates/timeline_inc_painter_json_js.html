@@ -1,4 +1,4 @@
-<{* $Id: timeline_inc_painter_json_js.html,v 1.3 2009/03/23 01:08:08 ohwada Exp $ *}>
+<{* $Id: timeline_inc_painter_json_js.html,v 1.4 2011/12/26 05:47:21 ohwada Exp $ *}>
 
 <style>
 div.timeline-event-icon {
@@ -40,6 +40,8 @@ function timeline_load_<{$id}>()
 	<{/if}>
 
 	timeline_painter_json( timeline_param );
+
+	Timeline.writeVersion('timeline_version');
 }
 
 <{if $show_onload }>

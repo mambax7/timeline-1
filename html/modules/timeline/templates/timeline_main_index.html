@@ -1,4 +1,4 @@
-<{* $Id: timeline_main_index.html,v 1.3 2009/03/21 16:08:03 ohwada Exp $ *}>
+<{* $Id: timeline_main_index.html,v 1.4 2011/12/26 05:47:21 ohwada Exp $ *}>
 
 <{if $show_default_css }>
   <link href="<{$xoops_url}>/modules/<{$xoops_dirname}>/libs/default.css" type="text/css" rel="stylesheet"/>
@@ -29,6 +29,10 @@ function timeline_zoom_<{$id}>( link, op, unit )
 <{$lang_title_painter_json}></a> | 
 <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=painter_events">
 <{$lang_title_painter_events}></a> | 
+<a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=monet_xml">
+<{$lang_title_monet_xml}></a> | 
+<a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?op=monet_events">
+<{$lang_title_monet_events}></a> | 
 <br />
 
 <h4><{$lang_title}></h4>
@@ -49,15 +53,9 @@ function timeline_zoom_<{$id}>( link, op, unit )
   <br /><br />
 <{/if}>
 
-<a href="http://code.google.com/p/simile-widgets/" target="_blank">
+<a href="http://www.simile-widgets.org/timeline/" target="_blank">
 Powered by MIT Simile Project</a><br />
 Timeline version: <span id="timeline_version"></span><br /><br />
-
-<script type="text/javascript">
-//<![CDATA[
-  Timeline.writeVersion('timeline_version');
-//]]>
-</script>
 
 <{$lang_caution_ie}><br /><br />
 
