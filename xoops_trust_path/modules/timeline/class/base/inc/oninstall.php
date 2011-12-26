@@ -1,10 +1,16 @@
 <?php
-// $Id: oninstall.php,v 1.1 2009/03/19 15:31:31 ohwada Exp $
+// $Id: oninstall.php,v 1.2 2011/12/26 06:43:20 ohwada Exp $
 
 //=========================================================
 // timeline module
 // 2009-03-15 K.OHWADA
 //=========================================================
+
+//---------------------------------------------------------
+// change log
+// 2011-12-25 K.OHWADA
+// Assigning the return value of new by reference is now deprecated.
+//---------------------------------------------------------
 
 if ( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 
@@ -191,10 +197,10 @@ function table_install()
 
 	if( file_exists( XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ) ) {
 		include_once XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ;
-		$sqlutil =& new OldSqlUtility ;
+		$sqlutil = new OldSqlUtility() ;
 	} else {
 		include_once XOOPS_ROOT_PATH.'/class/database/sqlutility.php' ;
-		$sqlutil =& new SqlUtility ;
+		$sqlutil = new SqlUtility() ;
 	}
 
 	$sql_query = trim( file_get_contents( $sql_file_path ) ) ;
@@ -244,10 +250,10 @@ function table_update()
 
 	if( file_exists( XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ) ) {
 		include_once XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ;
-		$sqlutil =& new OldSqlUtility ;
+		$sqlutil = new OldSqlUtility() ;
 	} else {
 		include_once XOOPS_ROOT_PATH.'/class/database/sqlutility.php' ;
-		$sqlutil =& new SqlUtility ;
+		$sqlutil = new SqlUtility() ;
 	}
 
 	$sql_query = trim( file_get_contents( $sql_file_path ) ) ;
