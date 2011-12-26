@@ -1,4 +1,4 @@
-$Id: readme.txt,v 1.1 2009/03/19 14:42:18 ohwada Exp $
+$Id: readme.txt,v 1.2 2011/12/26 05:55:21 ohwada Exp $
 
 =================================================
 timeline module
@@ -10,3 +10,7 @@ http://simile.mit.edu/wiki/How_to_Create_Timelines
 
 (2) painter.json
 http://simile-widgets.googlecode.com/svn/timeline/tags/latest/src/webapp/examples/compact-painter/compact-painter.html
+
+(3) monet.xml
+http://www.simile-widgets.org/timeline/examples/monet/monet.html
+
