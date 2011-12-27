@@ -1,5 +1,5 @@
 <?php
-// $Id: timeline.php,v 1.6 2011/12/26 05:45:39 ohwada Exp $
+// $Id: timeline.php,v 1.7 2011/12/27 08:09:39 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -393,6 +393,20 @@ function set_band_unit( $unit )
 {
 	switch ( $unit )
 	{
+		case 'millennium':
+			$this->set_band_0_unit( _C_TIMELINE_UNIT_CENTURY );
+			$this->set_band_1_unit( _C_TIMELINE_UNIT_MILLENNIUM );
+			$this->set_band_0_pixels( _C_TIMELINE_PIXELS_MILLENNIUM_CENTURY );
+			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_MILLENNIUM_MILLENNIUM );
+			break;
+
+		case 'century':
+			$this->set_band_0_unit( _C_TIMELINE_UNIT_DECADE );
+			$this->set_band_1_unit( _C_TIMELINE_UNIT_CENTURY );
+			$this->set_band_0_pixels( _C_TIMELINE_PIXELS_CENTURY_DECADE );
+			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_CENTURY_CENTURY );
+			break;
+
 		case 'decade':
 			$this->set_band_0_unit( _C_TIMELINE_UNIT_YEAR );
 			$this->set_band_1_unit( _C_TIMELINE_UNIT_DECADE );
@@ -420,6 +434,20 @@ function set_band_unit( $unit )
 			$this->set_band_0_pixels( _C_TIMELINE_PIXELS_WEEK_DAY );
 			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_WEEK_MONTH );
 			break;	
+
+		case 'day':
+			$this->set_band_0_unit( _C_TIMELINE_UNIT_HOUR );
+			$this->set_band_1_unit( _C_TIMELINE_UNIT_DAY );
+			$this->set_band_0_pixels( _C_TIMELINE_PIXELS_DAY_HOUR );
+			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_DAY_DAY );
+			break;
+
+		case 'hour':
+			$this->set_band_0_unit( _C_TIMELINE_UNIT_MINUTE );
+			$this->set_band_1_unit( _C_TIMELINE_UNIT_HOUR );
+			$this->set_band_0_pixels( _C_TIMELINE_PIXELS_HOUR_MINUTE );
+			$this->set_band_1_pixels( _C_TIMELINE_PIXELS_HOUR_HOUR );
+			break;
 	}
 }
 
