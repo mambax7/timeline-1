@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php,v 1.3 2011/12/26 05:45:39 ohwada Exp $
+// $Id: main.php,v 1.4 2011/12/28 15:57:34 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -28,6 +28,26 @@ define("_TIMELINE_TITLE_MONET_XML",      "Monet XML");
 define("_TIMELINE_TITLE_MONET_EVENTS",   "Monet Eventes");
 define("_TIMELINE_JS_INVALID", "Your browser cannot use JavaScript");
 define("_TIMELINE_CAUTION_IE", "In InternetExpolar, you cannot see it sometimes.<br />Please try in other browsers such as Firfox, Opera, Safari.");
+
+//---------------------------------------------------------
+// v0.20
+//---------------------------------------------------------
+// index
+define("_TIMELINE_TITLE_MONET_XML",      "Monet XML");
+define("_TIMELINE_TITLE_MONET_EVENTS",   "Monet Eventes");
+
+// scale
+define("_TIMELINE_UNIT_MILLISECOND" , "Millisecond" ) ;
+define("_TIMELINE_UNIT_SECOND" ,      "Second" ) ;
+define("_TIMELINE_UNIT_MINUTE" ,      "Minute" ) ;
+define("_TIMELINE_UNIT_HOUR" ,        "Hour" ) ;
+define("_TIMELINE_UNIT_DAY" ,         "Day" ) ;
+define("_TIMELINE_UNIT_WEEK",         "Week") ;
+define("_TIMELINE_UNIT_MONTH",        "Month") ;
+define("_TIMELINE_UNIT_YEAR",         "Year") ;
+define("_TIMELINE_UNIT_DECADE",       "Decade") ;
+define("_TIMELINE_UNIT_CENTURY" ,     "Century" ) ;
+define("_TIMELINE_UNIT_MILLENNIUM" ,  "Millennium" ) ;
 
 // === define end ===
 }

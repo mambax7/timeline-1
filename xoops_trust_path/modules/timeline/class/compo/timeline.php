@@ -1,5 +1,5 @@
 <?php
-// $Id: timeline.php,v 1.7 2011/12/27 08:09:39 ohwada Exp $
+// $Id: timeline.php,v 1.8 2011/12/28 15:57:34 ohwada Exp $
 
 //=========================================================
 // timeline module
@@ -523,6 +523,48 @@ function remove_linecode( $params )
 	foreach( $params as $k => $v ){
 		$arr[ $k ] = str_replace( $search, '', $v );
 	}
+	return $arr;
+}
+
+//---------------------------------------------------------
+// option
+//---------------------------------------------------------
+function get_unit_lang_array()
+{
+	$arr = array(
+//		'millisecond'=> $this->get_lang( 'UNIT_MILLISECOND' ) ,
+//		'second'     => $this->get_lang( 'UNIT_SECOND' ) ,
+//		'minute'     => $this->get_lang( 'UNIT_MINUTE' ) ,
+		'hour'       => $this->get_lang( 'UNIT_HOUR' ) ,
+		'day'        => $this->get_lang( 'UNIT_DAY' ) ,
+		'week'       => $this->get_lang( 'UNIT_WEEK' ) ,
+		'month'      => $this->get_lang( 'UNIT_MONTH' ) ,
+		'year'       => $this->get_lang( 'UNIT_YEAR' ) ,
+		'decade'     => $this->get_lang( 'UNIT_DECADE' ) ,
+		'century'    => $this->get_lang( 'UNIT_CENTURY' ) ,
+		'millennium' => $this->get_lang( 'UNIT_MILLENNIUM' ) ,
+	);
+
+	return $arr;
+}
+
+function get_int_unit_array()
+{
+	$arr = array(
+//		_C_TIMELINE_UNIT_MILLISECOND => 'millisecond' ,
+		_C_TIMELINE_UNIT_SECOND      => 'second' ,
+		_C_TIMELINE_UNIT_MINUTE      => 'minute' ,
+		_C_TIMELINE_UNIT_HOUR        => 'hour' ,
+		_C_TIMELINE_UNIT_DAY         => 'day' ,
+		_C_TIMELINE_UNIT_WEEK        => 'week' ,
+		_C_TIMELINE_UNIT_MONTH       => 'month' ,
+		_C_TIMELINE_UNIT_YEAR        => 'year' ,
+		_C_TIMELINE_UNIT_DECADE      => 'decade' ,
+		_C_TIMELINE_UNIT_CENTURY     => 'century' ,
+		_C_TIMELINE_UNIT_MILLENNIUM  => 'millennium' ,
+//		_C_TIMELINE_UNIT_EPOCH       => 'epoch' ,
+//		_C_TIMELINE_UNIT_ERA         => 'era' ,
+	);
 	return $arr;
 }
 
