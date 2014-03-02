@@ -34,5 +34,6 @@ timeline_include_once( 'class/compo/xoops/config.php',        $MY_DIRNAME );
 timeline_include_once( 'class/compo/xoops/header.php',        $MY_DIRNAME );
 timeline_include_once( 'class/compo/d3/language.php',         $MY_DIRNAME );
 timeline_include_once( 'class/compo/timeline.php',            $MY_DIRNAME );
+timeline_include_language( 'main.php',                        $MY_DIRNAME );
 
 ?>
