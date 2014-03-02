@@ -161,6 +161,7 @@ function build_basic()
 	$arr['official'] = 0;
 	$arr['image']    = $module_icon ;
 	$arr['dirname']  = $this->_DIRNAME;
+	$arr['trust_dirname']  = 'timeline' ;
 	$arr['version']  = $this->get_version() ;
 
 // Any tables can't be touched by modulesadmin.
