@@ -11,7 +11,7 @@ if( ! defined( 'XOOPS_TRUST_PATH' ) ) die( 'not permit' ) ;
 // --- define version begin ---
 if( !defined("_C_TIMELINE_VERSION") ) 
 {
-	define("_C_TIMELINE_VERSION", "0.20" ) ;
+	define("_C_TIMELINE_VERSION", "0.21" ) ;
 }
 // --- define version end ---
 
