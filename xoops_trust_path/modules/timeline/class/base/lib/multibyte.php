@@ -42,9 +42,9 @@ function set_internal_encoding( $charset )
 	     function_exists('iconv_set_encoding') ) {
 
 		$current = iconv_get_encoding( 'internal_encoding' );
-		$ret = iconv_set_encoding( 'internal_encoding', $charset );
+		$ret = @iconv_set_encoding( 'internal_encoding', $charset );
 		if ( $ret === false ) {
-			iconv_set_encoding( 'internal_encoding', $current );
+			@iconv_set_encoding( 'internal_encoding', $current );
 		}
 		return $ret;
 	}
@@ -73,7 +73,7 @@ function i_iconv_get_encoding( $type )
 function i_iconv_set_encoding( $type, $charset )
 {
 	if ( function_exists('iconv_set_encoding') ) {
-		return iconv_set_encoding( $type, $charset );
+		return @iconv_set_encoding( $type, $charset );
 	}
 	return true;	// dummy
 }
