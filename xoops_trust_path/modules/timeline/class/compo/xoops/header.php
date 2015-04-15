@@ -25,7 +25,7 @@ function timeline_compo_xoops_header( $dirname )
 	$this->_JS_URL = $this->_MODULE_URL .'/libs/timeline';
 }
 
-function &getSingleton( $dirname )
+public static function &getSingleton( $dirname )
 {
 	static $singletons;
 	if ( !isset( $singletons[ $dirname ] ) ) {

@@ -23,7 +23,7 @@ function timeline_compo_d3_language( $dirname )
 	$this->get_lang_array();
 }
 
-function &getSingleton( $dirname )
+public static function &getSingleton( $dirname )
 {
 	static $singletons;
 	if ( !isset( $singletons[ $dirname ] ) ) {

@@ -25,7 +25,7 @@ function timeline_inc_xoops_version( $dirname )
 	$this->timeline_base_inc_xoops_version( $dirname );
 }
 
-function &getSingleton( $dirname )
+public static function &getSingleton( $dirname )
 {
 	static $singletons;
 	if ( !isset( $singletons[ $dirname ] ) ) {

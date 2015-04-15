@@ -23,7 +23,7 @@ function timeline_inc_oninstall()
 	$this->set_trust_dirname( TIMELINE_TRUST_DIRNAME );
 }
 
-function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {

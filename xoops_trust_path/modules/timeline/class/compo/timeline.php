@@ -160,7 +160,7 @@ function timeline_compo_timeline( $dirname )
 	$this->_timezone = intval( $this->_xoops_param_class->get_default_timezone() );
 }
 
-function &getSingleton( $dirname )
+public static function &getSingleton( $dirname )
 {
 	static $singletons;
 	if ( !isset( $singletons[ $dirname ] ) ) {

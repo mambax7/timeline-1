@@ -23,7 +23,7 @@ function timeline_inc_admin_menu( $dirname )
 	$this->timeline_base_inc_admin_menu( $dirname );
 }
 
-function &getSingleton( $dirname )
+public static function &getSingleton( $dirname )
 {
 	static $singletons;
 	if ( !isset( $singletons[ $dirname ] ) ) {

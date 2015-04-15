@@ -25,7 +25,7 @@ function timeline_admin_index( $dirname )
 	$this->_check_class = new timeline_base_admin_server_check( $dirname, TIMELINE_TRUST_DIRNAME );
 }
 
-function &getInstance( $dirname )
+public static function &getInstance( $dirname )
 {
 	static $instance;
 	if (!isset($instance)) {

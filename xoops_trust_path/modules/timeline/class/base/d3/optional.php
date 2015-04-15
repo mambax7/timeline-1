@@ -32,7 +32,7 @@ function timeline_base_d3_optional()
 	$this->_xoops_language = $this->get_xoops_config( 'language' );
 }
 
-function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {

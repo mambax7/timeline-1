@@ -41,7 +41,7 @@ function timeline_main_index( $dirname )
 	$this->_header_class   =& timeline_compo_xoops_header::getSingleton( $dirname );
 }
 
-function &getInstance( $dirname )
+public static function &getInstance( $dirname )
 {
 	static $instance;
 	if (!isset($instance)) {

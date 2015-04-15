@@ -34,7 +34,7 @@ function timeline_base_d3_preload()
 	// dummy
 }
 
-function &getInstance()
+public static function &getInstance()
 {
 	static $instance;
 	if (!isset($instance)) {
