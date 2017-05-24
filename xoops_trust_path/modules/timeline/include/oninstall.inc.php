@@ -58,19 +58,19 @@ if( ! function_exists( 'timeline_oninstall_base' ) )
 
 function timeline_oninstall_base( &$module )
 {
-	$inc_class =& timeline_inc_oninstall::getInstance();
+	$inc_class = timeline_inc_oninstall::getInstance();
 	return $inc_class->install( $module );
 }
 
 function timeline_onupdate_base( &$module )
 {
-	$inc_class =& timeline_inc_oninstall::getInstance();
+	$inc_class = timeline_inc_oninstall::getInstance();
 	return $inc_class->update( $module );
 }
 
 function timeline_onuninstall_base( &$module )
 {
-	$inc_class =& timeline_inc_oninstall::getInstance();
+	$inc_class = timeline_inc_oninstall::getInstance();
 	return  $inc_class->uninstall( $module );
 }
 

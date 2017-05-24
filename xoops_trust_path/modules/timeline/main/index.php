@@ -25,7 +25,7 @@ timeline_include_once_preload();
 //=========================================================
 // main
 //=========================================================
-$manage =& timeline_main_index::getInstance( TIMELINE_DIRNAME );
+$manage = timeline_main_index::getInstance( TIMELINE_DIRNAME );
 
 $xoopsOption['template_main'] = TIMELINE_DIRNAME.'_main_index.html' ;
 include XOOPS_ROOT_PATH . "/header.php" ;

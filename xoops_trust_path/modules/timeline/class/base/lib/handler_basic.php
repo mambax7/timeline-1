@@ -25,7 +25,7 @@ class timeline_base_lib_handler_basic
 //---------------------------------------------------------
 function timeline_base_lib_handler_basic()
 {
-	$this->_db =& Database::getInstance();
+	$this->_db = Database::getInstance();
 }
 
 //---------------------------------------------------------

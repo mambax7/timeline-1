@@ -35,7 +35,7 @@ timeline_include_once_preload();
 //=========================================================
 // main
 //=========================================================
-$manager =& timeline_admin_index::getInstance( TIMELINE_DIRNAME );
+$manager = timeline_admin_index::getInstance( TIMELINE_DIRNAME );
 $manager->main();
 exit();
 
